@@ -20,10 +20,15 @@ function createLI (text) {
     //appends the label to the li
     li.appendChild(label);
 
+    //creates the edit button and appends it to the li
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    li.appendChild(editButton);
+
     //creates the remove button and appends it to the li
-    const button = document.createElement('button');
-    button.textContent = 'Remove';
-    li.appendChild(button);
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    li.appendChild(removeButton);
 
     //returns the newly created list
     return li;
@@ -54,8 +59,14 @@ ul.addEventListener('change', (e) => {
 //Triggers when button is clicked to remove RSVP
 ul.addEventListener('click', (e) => {
     if (e.target.tagName === 'BUTTON') {
-        const li = e.target.parentNode;
+        const button = e.target;
+        const li = button.parentNode;
         const ul = li.parentNode;
-        ul.removeChild(li);
+        if (button.textContent === 'Remove') {
+            ul.removeChild(li);
+        } else if (button.textContent === 'Edit'){
+            console.log('edit');
+        }
     }
 });
+
